@@ -13,7 +13,7 @@
 </head>
 <body>
   <!-- LOGIN PAGE -->
-  <div class="sidenav"></div>
+  <div class="sidenav" id="bgsidenav"></div>
   <div class="main" id="loginPage">
     <div class="login-page">
       <form id="login-form">
@@ -31,8 +31,11 @@
                 <button class="btn btn-primary" type="submit"><i class="fa fa-sign-in"></i>&nbsp;Login</button>
               </div>
               <div class="col-md-12 text-center g-login">
-                <p>Or you want login with Google Account</p>
+                <p>---- or ----</p>
                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
+              </div>
+              <div class="col-md-12 mt-3 text-center">
+                <p>If you don't have account <span class="signup" id="signup">Sign Up Here</span></p>
               </div>
             </div>
           </div>
@@ -56,6 +59,9 @@
             <div class="row">
               <div class="col-md-12 text-center mt-3 mb-3">
                 <button class="btn btn-success" type="submit" ><i class="fa fa-sign-in" ></i>&nbsp;Register</button>
+              </div>
+              <div class="col-md-12 mt-3 text-center">
+                <p>If you have account <span class="signin" id="signin">Login Here</span></p>
               </div>
             </div>
           </div>
@@ -2998,10 +3004,11 @@
   </svg>
   <div id="home">
     <h4 class="ml-5 mb-3">anovanurfaqih@gmail.com</h4>
-    <button class="btn-jalan mr-3">JALAN-JALAN</button>
+    <button class="btn-jalan mr-3" id="jalan-jalan">JALAN-JALAN</button>
     <button class="btn-logout">LOGOUT</button>
   </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

@@ -1,6 +1,7 @@
 var plan = function() {
   var baseUrl = 'http://localhost:3000'
 
+  var bgsidenav = $("#bgsidenav")
   var loginPage = $("#loginPage")
   var planList = $("#planList")
   var loading = $("#loading")
@@ -38,6 +39,10 @@ var plan = function() {
   var modalDetailPlan = $("#detailPlan")
   var modalEditPlan = $("#editPlan")
 
+  var signUp = $("#signup")
+  var signIn = $("#signin")
+  var jalanJalan = $("#jalan-jalan")
+
   startSet()
 
   function startSet(){
@@ -47,7 +52,16 @@ var plan = function() {
       homeSVG.hide()
       registForm.hide()
     }else{
-      
+      planList.hide()
+      loginPage.hide()
+      bgsidenav.hide()
+      homeSVG.hide()
+      setTimeout(() => {
+        loading.hide()
+      }, 1500);
+      setTimeout(() => {
+        homeSVG.show()
+      }, 1500);
     }
   }
 
@@ -61,6 +75,24 @@ var plan = function() {
     register()
   })
 
+  signUp.on('click', function(e){
+    e.preventDefault()
+    loginForm.hide().fadeOut(80);
+    registForm.show().delay(80).fadeIn(80);
+  })
+
+  signIn.on('click', function(e){
+    e.preventDefault()
+    registForm.hide().fadeOut(80);
+    loginForm.show().delay(80).fadeIn(80);
+  })
+
+  jalanJalan.on('click', function(e){
+    e.preventDefault()
+    planList.show()
+    homeSVG.hide()
+  })
+
   function login () {
     $.ajax(`${baseUrl}/login`, {
       method: "POST",
@@ -71,10 +103,8 @@ var plan = function() {
       success: function(response){
         let token = response.token
         localStorage.setItem("token", token)
-        // $("#loginPage").hide()
-        // showAll()
-        // $("#planPage").show()
-        console.log("berhasil login")
+        localStorage.setItem('email', response.user.email)
+        localStorage.setItem('username', response.user.username)
         Swal.fire({
           position: 'top-end',
           icon: 'success',
@@ -82,9 +112,10 @@ var plan = function() {
           showConfirmButton: false,
           timer: 1500
         })
+        loginPage.hide()
+        planList.show()
       },
       error: function(err){
-        console.log(err)
         Swal.fire({
           icon: 'error',
           title: 'Oops...', 
@@ -159,26 +190,26 @@ function signOut() {
       },
       success: function(response){
         console.log("berhasil", response)
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'successfully registered! sign in to start your Plan!',
-          showConfirmButton: false,
-          timer: 3000
-        })
+        // Swal.fire({
+        //   position: 'top-end',
+        //   icon: 'success',
+        //   title: 'successfully registered! sign in to start your Plan!',
+        //   showConfirmButton: false,
+        //   timer: 3000
+        // })
       },
       error: function(err){
         console.log(err)
-        let errors = '<div class="flex-column" style="color:red">'
-        err.responseJSON.errMsg.forEach(salah => {
-          errors += `<div class="col"> ${salah} </div>`
-        })
-        errors += "</div>"
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...', 
-          html: errors
-        })
+        // let errors = '<div class="flex-column" style="color:red">'
+        // err.responseJSON.errMsg.forEach(salah => {
+        //   errors += `<div class="col"> ${salah} </div>`
+        // })
+        // errors += "</div>"
+        // Swal.fire({
+        //   icon: 'error',
+        //   title: 'Oops...', 
+        //   html: errors
+        // })
       }
     })
   }
