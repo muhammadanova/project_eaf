@@ -64,195 +64,185 @@
     </div>
   </div> -->
 
-  <!-- BATAS LOGIN PAGE -->
-
-
-  <!-- BUTTON MODAL -->
-  <!-- <div class="container">
+  <div class="container">
     <div class="row">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add Plan</button>
+      <div class="col-md-12 text-center mt-5 mb-3">
+        <button type="button" class="btn-add-plan" data-toggle="modal" data-target="#addPlan" data-whatever="@getbootstrap">Add Plan</button>
+      </div>
+      <div class="col-md-4">
+        <div class="card-style">
+          <div class="additional">
+            <div class="user-card">
+              <div class="level center">Planning</div>
+              <div class="points center">Travel</div>
+            </div>
+            <div class="more-info">
+              <div class="button-action-card">
+                <button class="btn btn-white" type="button" data-toggle="modal" data-target="#detailPlan" data-whatever="@getbootstrap"><i class="fa fa-info"></i>&nbsp;Detail</button>
+                <button class="btn btn-white" type="button" data-toggle="modal" data-target="#editPlan" data-whatever="@getbootstrap"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                <button class="btn btn-white" onclick=""><i class="fa fa-trash"></i>&nbsp;Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="general">
+            <h5 class="mb-3">Pendakian Gunung Semeru</h5>
+            <p><i class="fa fa-calendar"></i>&nbsp;21-05-2020</p>
+            <p><i class="fa fa-map-marker"></i>&nbsp;Malang, Jawa Timur</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">EDIT Plan</button>
-    </div>
-  </div> -->
-  
+  </div>
   
   <!-- INI MODAL ADD PLAN -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
-    <div class="modal-dialog" role="document">
+  <div class="modal fade" id="addPlan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <form>
-            <div class="form-group" id="formm-add-plan">
-              <label for="exampleInputPassword1">Title</label>
-              <input type="text" class="form-control" id="title-add-plan" placeholder="title">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Itinerary</label>
-              <input type="text" class="form-control" id="itinerary-add-plan" placeholder="itinerary">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Province</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="province-add-plan">Options</label>
-                </div>
-                <select class="custom-select" id="province-add-plan">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+          <h5 class="modal-title" id="exampleModalCenterTitle">FORM ADD PLAN</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="" id="addPlanForm">
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Title Trip Plan</label>
+                <input type="text" class="form-control" name="title" id="addTitle" placeholder="Pendakian Gunung Semeru">
+              </div>
+              <div class="form-group col-md-4">
+                <label>Province</label>
+                <select id="addProvince" name="province" class="form-control">
+                  <option>Test</option>
                 </select>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">City</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="city-add-plan">Options</label>
-                </div>
-                <select class="custom-select" id="city-add-plan">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+              <div class="form-group col-md-4">
+                <label>City</label>
+                <select id="addCity" name="city" class="form-control">
+                  <option>Test</option>
                 </select>
               </div>
+              <div class="form-group col-md-4">
+                <label>Date Plan</label>
+                <input type="date" class="form-control" name="date_plan" id="addDatePlan">
+              </div>
+              <div class="form-group col-md-6">
+                <label>Transportation</label>
+                <select id="addTransportation" name="tranportation" class="form-control">
+                  <option value="Mobil">Mobil</option>
+                  <option value="Motor">Motor</option>
+                  <option value="Pesawat">Pesawat</option>
+                  <option value="Kereta Api">Kereta Api</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Budget Estimate</label>
+                <input type="text" class="form-control" id="addBudget" placeholder="5.000.000">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Itinerary</label>
+                <textarea name="itinerary" id="addItinerary" class="form-control" style="resize:none;" rows="10" placeholder="Itinerary"></textarea>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Date</label>
-              <input type="date" class="form-control" id="date-add-plan" >
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Budget</label>
-              <input type="number" class="form-control" id="budget-add-plan" >
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Plan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- INI MODAL DETAIL PLAN -->
+  <div class="modal fade" id="detailPlan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">DETAIL PLAN</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h5>Pendakian Gunung Semeru</h5>
+          <h5>Malang, Jawa Timur</h5>
+          <p>22-02-202</p>
+          <h5>5.000.000</h5>
+          <h5>Transportation</h5>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, ea sed dignissimos placeat libero veniam dolorum ipsam, provident beatae eveniet consequatur 
+            voluptatem quae eligendi eaque! Dicta alias iure voluptatem officia.</p>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add Plan</button>
         </div>
       </div>
     </div>
   </div>
-<br>
-<br>
 
+  <!-- INI MODAL EDIT PLAN -->
+  <div class="modal fade" id="editPlan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">FORM EDIT PLAN</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="" id="addPlanForm">
+          <div class="modal-body">
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label>Title Trip Plan</label>
+                <input type="text" class="form-control" name="title" id="addTitle" placeholder="Pendakian Gunung Semeru">
+              </div>
+              <div class="form-group col-md-4">
+                <label>Province</label>
+                <select id="addProvince" name="province" class="form-control">
+                  <option>Test</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label>City</label>
+                <select id="addCity" name="city" class="form-control">
+                  <option>Test</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label>Date Plan</label>
+                <input type="date" class="form-control" name="date_plan" id="addDatePlan">
+              </div>
+              <div class="form-group col-md-6">
+                <label>Transportation</label>
+                <select id="addTransportation" name="tranportation" class="form-control">
+                  <option value="Mobil">Mobil</option>
+                  <option value="Motor">Motor</option>
+                  <option value="Pesawat">Pesawat</option>
+                  <option value="Kereta Api">Kereta Api</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label>Budget Estimate</label>
+                <input type="text" class="form-control" id="addBudget" placeholder="5.000.000">
+              </div>
+              <div class="form-group col-md-12">
+                <label>Itinerary</label>
+                <textarea name="itinerary" id="addItinerary" class="form-control" style="resize:none;" rows="10" placeholder="Itinerary"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Plan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
   
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <form>
-            <div class="form-group" id="formm-edit-plan">
-              <label for="exampleInputPassword1">Title</label>
-              <input type="text" class="form-control" id="title-edit" value="title-edit-plan">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Itinerary</label>
-              <input type="text" class="form-control" id="itinerary-edit" value="itinerary-edit-plan">
-            </div>
-            <div class="form-group">
-              <label for="exampleInputEmail1">Province</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="province-edit-plan">Options</label>
-                </div>
-                <select class="custom-select" id="province-edit-plan">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">City</label>
-              <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                  <label class="input-group-text" for="city-edit-plan">Options</label>
-                </div>
-                <select class="custom-select" id="city-edit-plan">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Date</label>
-              <input type="date" class="form-control" id="date-edit-plan" >
-            </div>
-            <div class="form-group">
-              <label for="exampleInputPassword1">Budget</label>
-              <input type="number" class="form-control" id="budget-edit-plan" >
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-    <!-- <div class="card-style">
-      <div class="additional">
-        <div class="user-card">
-          <div class="level center">Planning</div>
-          <div class="points center">Travel</div>
-        </div>
-      </div>
-      <div class="col-md-4 no-padding">
-        <div class="card-style">
-          <div class="additional">
-            <div class="user-card">
-              <div class="level center">Planning</div>
-              <div class="points center">Travel</div>
-            </div>
-            <div class="more-info">
-              <div class="button-action-card">
-                <button class="btn btn-white"><i class="fa fa-info"></i>&nbsp;Detail</button>
-                <button class="btn btn-white"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
-                <button class="btn btn-white"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-              </div>
-            </div>
-          </div>
-          <div class="general">
-            <h5 class="mb-3">Pendakian Gunung Semeru</h5>
-            <p><i class="fa fa-calendar"></i>&nbsp;21-05-2020</p>
-            <p><i class="fa fa-map-marker"></i>&nbsp;Malang, Jawa Timur</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 no-padding">
-        <div class="card-style">
-          <div class="additional">
-            <div class="user-card">
-              <div class="level center">Planning</div>
-              <div class="points center">Travel</div>
-            </div>
-            <div class="more-info">
-              <div class="button-action-card">
-                <button class="btn btn-white"><i class="fa fa-info"></i>&nbsp;Detail</button>
-                <button class="btn btn-white"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
-                <button class="btn btn-white"><i class="fa fa-trash"></i>&nbsp;Delete</button>
-              </div>
-            </div>
-          </div>
-          <div class="general">
-            <h5 class="mb-3">Pendakian Gunung Semeru</h5>
-            <p><i class="fa fa-calendar"></i>&nbsp;21-05-2020</p>
-            <p><i class="fa fa-map-marker"></i>&nbsp;Malang, Jawa Timur</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> -->
   <!-- <div id="home-svg">
   <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
     y="0px" viewBox="0 0 400 400" enable-background="new 0 0 400 400" xml:space="preserve">

@@ -164,7 +164,7 @@ body {
   width: 300px;
   float: left;
   position: absolute;
-  left: 150px;
+  left: 125px;
   height: 100%;
 }
 
@@ -563,5 +563,19 @@ body {
   border: 2px solid #186661;
   background-color: #186661;
   padding: 0.5rem 3rem;
+  color: #ffffff;
+}
+
+.btn-add-plan{
+  border: 2px solid #008bb2;
+  background-color: #ffffff;
+  padding: 0.5rem 5rem;
+  color: #008bb2;
+}
+
+.btn-add-plan:hover{
+  border: 2px solid #008bb2;
+  background-color: #008bb2;
+  padding: 0.5rem 5rem;
   color: #ffffff;
 }
