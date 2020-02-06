@@ -7,6 +7,10 @@ app.use(cors())
 app.use(express.urlencoded({ extended : true }))
 app.use(express.json())
 
+const userRoute = require('./routes/index')
+app.use('/',userRoute)
+
+
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}`)
 })
