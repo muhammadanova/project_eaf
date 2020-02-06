@@ -15,7 +15,8 @@ class UserController {
             if (!match) {
                 next({ statusCode: 400, message: "email or password incorect" })
             } else {
-                const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
+                const token = jwt.sign({ id: user.id }, "keyeryn")
+                //process.env.JWT_SECRET
                 req.headers.token = token
                 res.status(200).json({ user, token })
             }

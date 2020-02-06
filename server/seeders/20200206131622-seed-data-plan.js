@@ -14,6 +14,7 @@ module.exports = {
     */
    return queryInterface.bulkInsert('Plans',[
     {
+      title: 'Jalan Jalan Men',
       province :'Sumatera Utara',
       city : 'Medan',
       date_plan: new Date(),
@@ -21,6 +22,7 @@ module.exports = {
       transportation: "Pesawat",
       equipment: 'Tas',
       budget: '10000000',
+      UserId: 1,
       createdAt : new Date(),
       updatedAt: new Date()
     }

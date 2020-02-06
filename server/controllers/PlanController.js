@@ -1,5 +1,5 @@
 const { Plan } = require('../models')
-
+console.log(Plan)
 class PlanController {
 
   // Find All data
@@ -7,6 +7,7 @@ class PlanController {
    
     Plan.findAll()
     .then(allplan=>{
+      // console.log(allplan)
       if(allplan.length>0){
         res.status(200).json(allplan)
       }else{
@@ -23,6 +24,7 @@ class PlanController {
   // Add New Plan
   static addPlan(req,res,next){
     let dataPlan = {
+      title : req.body.title,
       province : req.body.province,
       city : req.body.city ,
       date_plan: req.body.date_plan,
@@ -37,7 +39,6 @@ class PlanController {
       res.status(201).json(result)
     })
     .catch(err=>{
-      console.log(err)
       next(err)
     })
 

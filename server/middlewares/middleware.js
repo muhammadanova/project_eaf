@@ -1,9 +1,11 @@
 const jwt = require('jsonwebtoken')
-exports.authentiocation = function (req, res, next) {
+const { Plan } = require('../models')
+exports.authentication = function (req, res, next) {
   try{
     console.log(req.headers.token)
     const token = req.headers.token
-    const user = jwt.verify(token, process.env.JWT_SECRET)
+    const user = jwt.verify(token, "keyeryn")
+    //process.env.JWT_SECRET
     req.user = user
     next()
   } 
@@ -15,12 +17,12 @@ exports.authentiocation = function (req, res, next) {
 
 exports.authorisation = function(req, res, next){
 let stringId = req.user.id.toString()
-  Todo.findOne({where:{id:req.params.id}})
-  .then(todo=> {
-    if(todo.UserId == stringId){
+  Plan.findOne({where: {id:req.params.id}})
+  .then(plan=> {
+    if(plan.UserId == stringId){
       next()
     } else {
-      next({code:401, message:"you are not allowed to do this task"})
+      next({code:401, message:"you are not allowed"})
     }
   })
   .catch(err => {
