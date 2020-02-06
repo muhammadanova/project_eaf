@@ -2,7 +2,7 @@ const router = require('express').Router()
 const UserController = require('../controllers/UserController')
 
 router.post('/login', UserController.login)
-// router.post('/google-sign-in', UserController.googleSignIn)
+router.post('/google-sign-in', UserController.googleSignIn)
 router.post('/register', UserController.register)
 
 

@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "erynrizky",
+    "password": "postgres",
     "database": "letspacker",
     "host": "localhost",
     "dialect": "postgres"
