@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const { Model } = sequelize.sequelize
+  const { Model } = sequelize.Sequelize
 
   class Plan extends Model {}
 
