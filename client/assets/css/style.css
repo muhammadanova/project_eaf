@@ -1,0 +1,253 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+.main-head{
+  height: 150px;
+  background: #FFF;
+ 
+}
+.sidenav {
+  background-image: url("../images/bg.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  height: 100%;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+.main {
+  padding: 0px 10px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+}
+
+@media screen and (max-width: 450px) {
+  #login-form{
+      margin-top: 10%;
+  }
+
+  .register-form{
+      margin-top: 10%;
+  }
+}
+
+@media screen and (min-width: 768px){
+  .main{
+      margin-left: 40%; 
+  }
+
+  .sidenav{
+      width: 60%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+  }
+
+  #login-form{
+      margin-top: 50%;
+  }
+
+  .register-form{
+      margin-top: 20%;
+  }
+}
+.login-main-text{
+  margin-top: 20%;
+  padding: 60px;
+  color: #fff;
+}
+.login-main-text h2{
+  font-weight: 300;
+}
+.btn-black{
+  background-color: #000 !important;
+  color: #fff;
+}
+.login-page{
+  width: 55%;
+  float: right;
+  margin-right: 2.8rem;
+}
+.register-page{
+  width: 55%;
+  float: right;
+  margin-right: 2.8rem;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.card-style {
+  width: 450px;
+  height: 250px;
+  background-color: #fff;
+  background: linear-gradient(#f8f8f8, #fff);
+  box-shadow: 0 8px 16px -8px rgba(0,0,0,0.4);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  margin: 1.5rem;
+}
+
+.card-style h1 {
+  text-align: center;
+}
+
+.card-style .additional {
+  position: absolute;
+  width: 150px;
+  height: 100%;
+  background: linear-gradient(#dE685E, #EE786E);
+  transition: width 0.4s;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.card-style.green .additional {
+  background: linear-gradient(#92bCa6, #A2CCB6);
+}
+
+
+.card-style:hover .additional {
+  width: 100%;
+  border-radius: 0 5px 5px 0;
+}
+
+.card-style .additional .user-card {
+  width: 150px;
+  height: 100%;
+  position: relative;
+  float: left;
+}
+
+.card-style .additional .user-card::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 10%;
+  right: -2px;
+  height: 80%;
+  border-left: 2px solid rgba(0,0,0,0.025);
+}
+
+.card-style .additional .user-card .level,
+.card-style .additional .user-card .points {
+  top: 15%;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: bold;
+  background: rgba(0,0,0,0.15);
+  padding: 0.125rem 0.75rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.card-style .additional .user-card .points {
+  top: 85%;
+}
+
+.card-style .additional .user-card svg {
+  top: 50%;
+}
+
+.card-style .additional .more-info {
+  width: 300px;
+  float: left;
+  position: absolute;
+  left: 150px;
+  height: 100%;
+}
+
+.card-style .additional .more-info h1 {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.card-style.green .additional .more-info h1 {
+  color: #224C36;
+}
+
+.card-style .additional .coords {
+  margin: 0 1rem;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.card-style.green .additional .coords {
+  color: #325C46;
+}
+
+.card-style .additional .coords span + span {
+  float: right;
+}
+
+.card-style .additional .stats {
+  font-size: 2rem;
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  top: auto;
+  color: #fff;
+}
+
+.card-style.green .additional .stats {
+  color: #325C46;
+}
+
+.card-style .additional .stats > div {
+  flex: 1;
+  text-align: center;
+}
+
+.card-style .additional .stats i {
+  display: block;
+}
+
+.card-style .additional .stats div.title {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.card-style .additional .stats div.value {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+}
+
+.card-style .additional .stats div.value.infinity {
+  font-size: 2.5rem;
+}
+
+.card-style .general {
+  width: 300px;
+  height: 100%;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 4rem 1rem;
+}
+
+.card-style .general .more {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 0.9em;
+}
+
+.btn-white{
+  border: 1px solid #963128;
+}
