@@ -9,7 +9,6 @@ class UserController {
     User.findOne({ where: { email: req.body.email } })
     .then(user => {
         if (!user) {
-            console.log("masuk sini")
             next({ statusCode: 404, message: "email or password incorect" })
         } else {
             const match = bcrypt.compareSync(req.body.password, user.password)
@@ -53,7 +52,7 @@ class UserController {
         User.findOne({where:{email:payload.email}})
         .then(user => {
             if(user) {
-                let token = generateToken({id: user.id})
+                const token = jwt.sign({ id: user.id }, "keyeryn")
                 res.status(200).json({token})
             } else {
                 User.create({
@@ -61,7 +60,7 @@ class UserController {
                     password: process.env.DEFAULT_PASSWORD
                 })
                 .then(user => {
-                    let token = generateToken({id: user.id})
+                    const token = jwt.sign({ id: user.id }, "keyeryn")
                     res.status(201).json({token})
                 })
             }
