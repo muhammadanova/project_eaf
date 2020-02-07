@@ -9,6 +9,7 @@ class UserController {
     User.findOne({ where: { email: req.body.email } })
     .then(user => {
         if (!user) {
+            console.log("masuk sini")
             next({ statusCode: 404, message: "email or password incorect" })
         } else {
             const match = bcrypt.compareSync(req.body.password, user.password)
