@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="google-signin-client_id" content="711658120413-pk2msg43eofdmbl2kilodvl4gd65009k.apps.googleusercontent.com">
+  <meta name="google-signin-client_id" content="192853845247-5m7nfo0olp0shku4js9inkkquh3plt9o.apps.googleusercontent.com">
   <title>Let's Packer</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -69,35 +69,16 @@
       </form>
     </div>
   </div>
+
   <div class="loading" id="loading"></div>
+
   <div id="planList">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-center mt-5 mb-3">
           <button type="button" class="btn-add-plan" data-toggle="modal" data-target="#addPlan" data-whatever="@getbootstrap">Add Plan</button>
         </div>
-        <div class="col-md-4">
-          <div class="card-style">
-            <div class="additional">
-              <div class="user-card">
-                <div class="level center">Planning</div>
-                <div class="points center">Travel</div>
-              </div>
-              <div class="more-info">
-                <div class="button-action-card">
-                  <button class="btn btn-white" type="button" data-toggle="modal" data-target="#detailPlan" data-whatever="@getbootstrap"><i class="fa fa-info"></i>&nbsp;Detail</button>
-                  <button class="btn btn-white" type="button" data-toggle="modal" data-target="#editPlan" data-whatever="@getbootstrap"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
-                  <button class="btn btn-white" onclick=""><i class="fa fa-trash"></i>&nbsp;Delete</button>
-                </div>
-              </div>
-            </div>
-            <div class="general">
-              <h5 class="mb-3">Pendakian Gunung Semeru</h5>
-              <p><i class="fa fa-calendar"></i>&nbsp;21-05-2020</p>
-              <p><i class="fa fa-map-marker"></i>&nbsp;Malang, Jawa Timur</p>
-            </div>
-          </div>
-        </div>
+        <div id="data-row"></div>
       </div>
     </div>
   </div>
@@ -3005,7 +2986,7 @@
   <div id="home">
     <h4 class="ml-5 mb-3">anovanurfaqih@gmail.com</h4>
     <button class="btn-jalan mr-3" id="jalan-jalan">JALAN-JALAN</button>
-    <button class="btn-logout">LOGOUT</button>
+    <button class="btn-logout" id="doLogout">LOGOUT</button>
   </div>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
