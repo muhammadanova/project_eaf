@@ -25,10 +25,11 @@ class PlanController {
       date_plan: req.body.date_plan,
       itinerary: req.body.itinerary,
       transportation: req.body.transportation,
-      equipment: req.body.equipment,
+      equipment: "nanti",
       budget: req.body.budget,
       UserId: req.user.id
     }
+    console.log(dataPlan)
 
     Plan.create(dataPlan)
     .then(result=>{
