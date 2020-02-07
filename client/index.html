@@ -74,11 +74,11 @@
 
   <div id="planList">
     <div class="container">
-      <div class="row">
+      <div class="lain">
         <div class="col-md-12 text-center mt-5 mb-3">
           <button type="button" class="btn-add-plan" data-toggle="modal" data-target="#addPlan" data-whatever="@getbootstrap">Add Plan</button>
         </div>
-        <div id="data-row"></div>
+        <div id="data-row" class="row"></div>
       </div>
     </div>
   </div>
@@ -102,14 +102,11 @@
               </div>
               <div class="form-group col-md-4">
                 <label>Province</label>
-                <select id="addProvince" name="province" class="form-control">
-                  <option>Test</option>
-                </select>
+                <select id="addProvince" name="province" class="form-control"></select>
               </div>
               <div class="form-group col-md-4">
                 <label>City</label>
                 <select id="addCity" name="city" class="form-control">
-                  <option>Test</option>
                 </select>
               </div>
               <div class="form-group col-md-4">
@@ -147,26 +144,7 @@
   <!-- INI MODAL DETAIL PLAN -->
   <div class="modal fade" id="detailPlan" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">DETAIL PLAN</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <h5>Pendakian Gunung Semeru</h5>
-          <h5>Malang, Jawa Timur</h5>
-          <p>22-02-202</p>
-          <h5>5.000.000</h5>
-          <h5>Transportation</h5>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, ea sed dignissimos placeat libero veniam dolorum ipsam, provident beatae eveniet consequatur 
-            voluptatem quae eligendi eaque! Dicta alias iure voluptatem officia.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Add Plan</button>
-        </div>
+      <div class="modal-content" id="contentDetail">
       </div>
     </div>
   </div>
@@ -182,6 +160,7 @@
           </button>
         </div>
         <form action="" id="editPlanForm">
+          <input type="hidden" id="editId">
           <div class="modal-body">
             <div class="form-row">
               <div class="form-group col-md-12">
@@ -191,13 +170,11 @@
               <div class="form-group col-md-4">
                 <label>Province</label>
                 <select id="editProvince" name="province" class="form-control">
-                  <option>Test</option>
                 </select>
               </div>
               <div class="form-group col-md-4">
                 <label>City</label>
                 <select id="editCity" name="city" class="form-control">
-                  <option>Test</option>
                 </select>
               </div>
               <div class="form-group col-md-4">

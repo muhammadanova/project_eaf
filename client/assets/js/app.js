@@ -22,13 +22,17 @@ var plan = function() {
   var addBudget = $("#addBudget")
   var addItinerary = $("#addItinerary")
 
+  var idEdit = $("#editId")
   var editTitle = $("#editTitle")
   var editProvince = $("#editProvince")
   var editCity = $("#editCity")
-  var editDatePlaen = $("#editDatePlan")
+  var editDatePlan = $("#editDatePlan")
   var editTransportation = $("#editTransportation")
   var editBudget = $("#editBudget")
   var editItinerary = $("#editItinerary")
+  var editProvinceOption = $("#editProvinceOption")
+  var editCityOption = $("#editCityOption")
+
 
   var emailLogin = $("#email-login")
   var passLogin = $("#password-login")
@@ -45,6 +49,8 @@ var plan = function() {
   var signIn = $("#signin")
   var jalanJalan = $("#jalan-jalan")
   var doLogout = $("#doLogout")
+
+  var contentDetail = $("#contentDetail")
 
   startSet()
 
@@ -105,32 +111,231 @@ var plan = function() {
     e.preventDefault()
     homeSVG.hide()
     planList.show()
+    apiProvince()
     getData()
   })
+
+  
 
   addPlanForm.on('submit', function(e){
     e.preventDefault()
     $.ajax({
-      method: 'POST',
-      url: `${baseUrl}/plan`,
+      method : "POST",
+      url : `${baseUrl}/plan`,
+      headers: {
+        token : localStorage.getItem('token')
+      },
       data: { 
         title: addTitle.val(),
-        province: addProvince.val(),
-        city: addCity.val(),
+        province: $('#addProvince option:selected').text(),
+        city: $('#addCity option:selected').text(),
         date_plan: addDatePlan.val(),
         itinerary: addItinerary.val(),
         transportation: addTransportation.val(),
         budget: addBudget.val(),
       },
-      headers: {
-        token : localStorage.getItem('token')
-      }
     })
     .done(res => {
-      modalAddTodo.modal('hide')
+      modalAddPlan.modal('hide')
       clearForm(addPlanForm)
       getData()
     })
+    .fail(err => {
+      console.log(err)
+    })
+    
+  })
+
+  function findPlan(id){
+    let token = localStorage.getItem('token')
+    $.ajax({
+      method: "GET",
+      url: `${baseUrl}/plan/${id}`,
+      headers: {
+        token : token
+      }
+    })
+    .done(res => {
+      console.log(res.province)
+      let formatDate = new Date(res.date_plan).toISOString().substring(0, 10)
+      idEdit.val(res.id)
+      editTitle.val(res.title)
+      editProvince.append(
+        `<option value="${res.province}" id="editProvinceOption">${res.province}</option>`
+      )
+      editCity.append(
+        `<option value="${res.city}" id="editProvinceOption">${res.city}</option>`
+      )
+      editCity.prop("disabled", true);
+      editDatePlan.val(formatDate)
+      editItinerary.val(res.itinerary)
+      editTransportation.val(res.transportation)
+      editBudget.val(res.budget)
+
+      let loadProvinces = false;
+    
+      editProvince.on('click', function(e) {
+        if (!loadProvinces){
+          $.ajax({
+            method: "GET",
+            url: 'https://x.rajaapi.com/MeP7c5nek1X3p5SLDCoWkih8P9sFQaqsXxJTPUTiMcMJcz9IZSnqgiCLF1/m/wilayah/provinsi',
+          })
+          .done(res => {
+            loadProvinces = true
+            console.log(res)
+            editProvince.empty()
+            editCity.empty()
+            res.data.map(el => {
+              editProvince.append(
+                `<option value="${el.id}">${el.name}</option>`
+              )
+            })
+          })
+          .fail(err => {
+            console.log(err)
+          })
+        }
+      })
+      editProvince.on('change', function(e) {
+        e.preventDefault()
+        let id_prov = editProvince.val()
+        $.ajax({
+          method: "GET",
+          url: `https://x.rajaapi.com/MeP7c5nek1X3p5SLDCoWkih8P9sFQaqsXxJTPUTiMcMJcz9IZSnqgiCLF1/m/wilayah/kabupaten?idpropinsi=${id_prov}`,
+        })
+        .done(res => {
+          editCity.empty()
+          editCity.prop("disabled", false);
+          res.data.map(el => {
+            editCity.append(
+              `<option value="${el.id}">${el.name}</option>`
+            )
+          })
+        })
+      })
+      detailDataPlan(res)
+    })
+    .fail(err => {
+      console.log(err)
+    })
+  }
+
+  function detailDataPlan(res){
+    let formatDate = new Date(res.date_plan).toISOString().substring(0, 10)
+    contentDetail.empty()
+    contentDetail.append(`
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">DETAIL PLAN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>${res.title}</h5>
+        <h5>${res.city}, ${res.province}</h5>
+        <p>${formatDate}</p>
+        <h5>${formatMoney(res.budget)}</h5>
+        <h5>${res.transportation}</h5>
+        <p>${res.itinerary}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div> 
+    `)
+  }
+
+  function formatMoney(money) {
+    let result = 'Rp. '
+    result += (money).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+    return result
+  }
+
+  editPlanForm.on("submit", function(e){
+    e.preventDefault()
+    let token = localStorage.token
+    $.ajax({
+      method: "PUT",
+      url: `${baseUrl}/plan/${idEdit.val()}`,
+      headers: {
+        token : token
+      },
+      data: {
+        title: editTitle.val(),
+        province: $('#editProvince option:selected').text(),
+        city: $('#editCity option:selected').text(),
+        date_plan: editDatePlan.val(),
+        itinerary: editItinerary.val(),
+        transportation: editTransportation.val(),
+        budget: editBudget.val()
+      }
+    })
+    .done(res => {
+      modalEditPlan.modal('hide')
+      clearForm(editPlanForm)
+      getData()
+    })
+    .fail(err => {
+      console.log(err)
+    })
+  })
+
+  function deletePlan(id){
+    console.log('masuk')
+    let token = localStorage.getItem('token')
+    if(confirm('Anda yakin ingin menghapus?')){
+      $.ajax({
+        method: "DELETE",
+        url: `${baseUrl}/plan/${id}`,
+        data: {},
+        headers: {
+          token : token
+        }
+      })
+      .done(res => {
+        getData()
+      })
+    }
+  }
+
+  function apiProvince(){
+    $.ajax({
+      method: "GET",
+      url: `https://x.rajaapi.com/MeP7c5nek1X3p5SLDCoWkih8P9sFQaqsXxJTPUTiMcMJcz9IZSnqgiCLF1/m/wilayah/provinsi`,
+    })
+    .done(res => {
+      res.data.map(el => {
+        addProvince.append(`
+          <option value="${el.id}">${el.name}</option>
+        `)
+      })
+    })
+    .fail(err => {
+      console.log(err)
+    })
+  }
+
+  function apiCity(id){
+    $.ajax({
+      method: "GET",
+      url: `https://x.rajaapi.com/MeP7c5nek1X3p5SLDCoWkih8P9sFQaqsXxJTPUTiMcMJcz9IZSnqgiCLF1/m/wilayah/kabupaten?idpropinsi=${id}`
+    })
+    .done(res => {
+      addCity.empty()
+      res.data.map(el => {
+        addCity.append(`
+          <option value="${el.id}">${el.name}</option>
+        `)
+      })
+    })
+    .fail(err => {
+      console.log(err)
+    })
+  }
+
+  addProvince.on('change', function(e){
+    e.preventDefault()
+    let id_prov = addProvince.val()
+    apiCity(id_prov)
   })
 
   function getData(){
@@ -160,6 +365,7 @@ var plan = function() {
       )
     }else{
       data.map((el, index) => {
+        let formatDate = new Date(el.date_plan).toISOString().substring(0, 10)
         rowPlanList.append(
         `<div class="col-md-4">
           <div class="card-style">
@@ -172,13 +378,13 @@ var plan = function() {
                 <div class="button-action-card">
                   <button class="btn btn-white" type="button" onclick="findPlan(${el.id})" data-toggle="modal" data-target="#detailPlan" data-whatever="@getbootstrap"><i class="fa fa-info"></i>&nbsp;Detail</button>
                   <button class="btn btn-white" type="button" onclick="findPlan(${el.id})" data-toggle="modal" data-target="#editPlan" data-whatever="@getbootstrap"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
-                  <button class="btn btn-white" onclick="deletePlan"><i class="fa fa-trash"></i>&nbsp;Delete</button>
+                  <button class="btn btn-white" onclick="deletePlan(${el.id})"><i class="fa fa-trash"></i>&nbsp;Delete</button>
                 </div>
               </div>
             </div>
             <div class="general">
               <h5 class="mb-3">${el.title}</h5>
-              <p><i class="fa fa-calendar"></i>&nbsp;${el.date_plane}</p>
+              <p><i class="fa fa-calendar"></i>&nbsp;${formatDate}</p>
               <p><i class="fa fa-map-marker"></i>&nbsp;${el.city}, ${el.province}</p>
             </div>
           </div>
@@ -256,10 +462,10 @@ var plan = function() {
     if(confirm('Anda yakin ingin menghapus?')){
       $.ajax({
         method: "DELETE",
-        url: `${baseUrl}/todos/${id}`,
+        url: `${baseUrl}/plan/${id}`,
         data: {},
         headers: {
-          Bearer : localStorage.getItem('token')
+          token : token
         }
       })
       .done(res => {
@@ -269,30 +475,20 @@ var plan = function() {
   }
 
   function onSignIn(googleUser) {
-    var ticket = googleUser.getBasicProfile();
-    // ID => profile.getId() Name => profile.getName() Image URL => profile.getImageUrl() Email => profile.getEmail()
-    $.ajax({
-      method: "POST",
-      url: `${baseUrl}/google-sign-in`,
+    var id_token = googleUser.getAuthResponse().id_token
+    $.ajax(`${baseUrl}/google-sign-in`, {
+      method:"POST",
       data: {
-        email: ticket.getEmail()
+        id_token
+      },
+      success: function(res) {
+        console.log(res.w3)
+        let token = res.token
+        localStorage.setItem("token", token)
+        localStorage.setItem('type', 'google')
+        startSet()
+        getData()
       }
-    })
-    .done(res => {
-      localStorage.setItem('token', res.token)
-      localStorage.setItem('email', ticket.getEmail())
-      localStorage.setItem('type', 'google')
-      usersHeader.text(localStorage.getItem('email'))
-      showAlert()
-      successAlert()
-      clearAlert()
-      startSet()
-      getData()
-    })
-    .fail(err => {
-      showAlert()
-      errorAlert()
-      clearAlert()
     })
   }
 
@@ -351,6 +547,6 @@ function findPlan(id){
   plan.findPlan(id)
 }
 
-function deleteTodo(id){
+function deletePlan(id){
   plan.deletePlan(id)
 }

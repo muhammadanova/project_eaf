@@ -54,16 +54,19 @@ class PlanController {
 
 
   // Edit Plan
-  static  editPlan(req,res,next){
+  static editPlan(req,res,next){
+    
     let dataPlan = {
+      title: req.body.title,
       province : req.body.province,
       city : req.body.city ,
-      date_plan: req.body.date_plan,
+      date_plan: new Date(req.body.date_plan),
       itinerary: req.body.itinerary,
       transportation: req.body.transportation,
-      equipment: req.body.equipment,
+      equipment: req.body.equipment || "no equipment",
       budget: req.body.budget
     }
+    console.log("data plan:", dataPlan)
 
     Plan.update(dataPlan, {
       where: {id : req.params.id },

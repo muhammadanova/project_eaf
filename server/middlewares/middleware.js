@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const { Plan } = require('../models')
 exports.authentication = function (req, res, next) {
+  console.log('masuk sini authenticat')
   try{
     console.log(req.headers.token)
     const token = req.headers.token
@@ -10,6 +11,7 @@ exports.authentication = function (req, res, next) {
     next()
   } 
   catch (error) {
+    console.log('gagal authentication')
     next({code:401, message:"invalid token"})
   }
 }

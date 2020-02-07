@@ -43,24 +43,25 @@ class UserController {
   }
 
   static googleSignIn(req, res, next) {
-    client.verifyIdToken({
-        idToken: req.body.id_token,
-        audience:process.env.GOOGLE_CLIENT_ID
-    })
-    .then(ticket => {
-        let payload = ticket.getPayload()
-        User.findOne({where:{email:payload.email}})
-        .then(user => {
+      client.verifyIdToken({
+          idToken: req.body.id_token,
+          audience:"192853845247-5m7nfo0olp0shku4js9inkkquh3plt9o.apps.googleusercontent.com"
+        })
+        .then(ticket => {
+            let payload = ticket.getPayload()
+            User.findOne({where:{email:payload.email}})
+            .then(user => {
             if(user) {
-                let token = generateToken({id: user.id})
+                const token = jwt.sign({ id: user.id }, "keyeryn")
+                console.log(token)
                 res.status(200).json({token})
             } else {
                 User.create({
                     email: payload.email,
-                    password: process.env.DEFAULT_PASSWORD
+                    password: "coba pasword"
                 })
                 .then(user => {
-                    let token = generateToken({id: user.id})
+                    const token = jwt.sign({ id: user.id }, "keyeryn")
                     res.status(201).json({token})
                 })
             }
