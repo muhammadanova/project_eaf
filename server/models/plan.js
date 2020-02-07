@@ -71,17 +71,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    equipment: {
-      type : DataTypes.STRING,
-      allowNull : false,
-      validate: {
-        notNull : { msg: 'Equipment must be filled'},
-        notEmpty : {
-          args: true,
-          msg: 'Equipment must be filled'
-        }
-      }
-    },
+    equipment: DataTypes.STRING,
     budget: {
       type : DataTypes.INTEGER,
       allowNull : false,

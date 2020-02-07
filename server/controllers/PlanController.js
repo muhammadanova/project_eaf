@@ -4,16 +4,11 @@ class PlanController {
 
   // Find All data
   static planList(req,res,next){
-   
-    Plan.findAll()
+    Plan.findAll({
+      order: [['id', 'DESC']]
+    })
     .then(allplan=>{
-      // console.log(allplan)
-      if(allplan.length>0){
-        res.status(200).json(allplan)
-      }else{
-        console.log('kosong')
-        res.status(204).json({message: 'data is empty'})
-      }
+      res.status(200).json(allplan)
     })
     .catch(err=>{
       next(err)
@@ -31,7 +26,8 @@ class PlanController {
       itinerary: req.body.itinerary,
       transportation: req.body.transportation,
       equipment: req.body.equipment,
-      budget: req.body.budget
+      budget: req.body.budget,
+      UserId: req.user.id
     }
 
     Plan.create(dataPlan)
