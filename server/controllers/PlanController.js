@@ -1,5 +1,6 @@
 const { Plan } = require('../models')
-console.log(Plan)
+const { User } = require('../models')
+const sendMail = require('../helpers/sendGrid').sendMail
 class PlanController {
 
   // Find All data
@@ -29,10 +30,17 @@ class PlanController {
       budget: req.body.budget,
       UserId: req.user.id
     }
-
-    Plan.create(dataPlan)
+    let user
+    let plan
+    User.findOne({where:{id:dataPlan.UserId}})
+    .then(result => {
+      user = result
+      return Plan.create(dataPlan)
+    })
     .then(result=>{
-      res.status(201).json(result)
+      plan = result
+      sendMail(user.dataValues, plan.dataValues)
+      res.status(201).json(plan.dataValues)
     })
     .catch(err=>{
       next(err)
