@@ -26,7 +26,7 @@ class PlanController {
       date_plan: req.body.date_plan,
       itinerary: req.body.itinerary,
       transportation: req.body.transportation,
-      equipment: "nanti",
+      equipment: req.body.equipment || 'no equipment',
       budget: req.body.budget,
       UserId: req.user.id
     }

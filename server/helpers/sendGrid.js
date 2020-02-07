@@ -1,12 +1,12 @@
 const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey("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");
-exports.sendMail = function (user) {
+sgMail.setApiKey("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");
+exports.sendMail = function (user, plan) {
   console.log(user, "<<<<<<<<<<<<<<<<<")
   const msg = {
     to: user.email,
-    from: "fadhilahrayafi@gmail.com",
+    from: "anovanurfaqih@gmail.com",
     subject: 'Informing about your traveling plan from letspcker',
-    html: `<h3>Hello ${user.username}!</h3> 
+    html: `<h3>Hello ${user.email}!</h3> 
     <br>We are from letspacker want to inform you about your plan
     <br>Here is a detail about your plan:
     <ul>

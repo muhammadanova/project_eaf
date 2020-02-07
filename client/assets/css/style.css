@@ -26,6 +26,20 @@ body {
   text-align: center !important;
   margin: 0 auto;
 }
+.signup{
+  color: #006a94
+}
+.signup:hover{
+  color: #0d3444;
+  cursor: pointer;
+}
+.signin{
+  color: #006a94
+}
+.signin:hover{
+  color: #0d3444;
+  cursor: pointer;
+}
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
 }
@@ -53,7 +67,9 @@ body {
       left: 0;
   }
 
-  #login-form{
+  #login-form,
+  #register-form
+  {
       margin-top: 50%;
   }
 

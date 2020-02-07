@@ -56,12 +56,12 @@ var plan = function() {
 
   function startSet(){
     if(!localStorage.getItem('token')){
-      bgsidenav.show()
-      loginPage.show()
       planList.hide()
       loading.hide()
       homeSVG.hide()
       registForm.hide()
+      bgsidenav.show()
+      loginPage.show()
     }else{
       planList.hide()
       loginPage.hide()
@@ -88,14 +88,14 @@ var plan = function() {
 
   signUp.on('click', function(e){
     e.preventDefault()
-    loginForm.hide().fadeOut(80);
-    registForm.show().delay(80).fadeIn(80);
+    loginForm.hide()
+    registForm.show()
   })
 
   signIn.on('click', function(e){
     e.preventDefault()
-    registForm.hide().fadeOut(80);
-    loginForm.show().delay(80).fadeIn(80);
+    registForm.hide()
+    loginForm.show()
   })
 
   doLogout.on('click', function(e) {
@@ -104,6 +104,7 @@ var plan = function() {
       signOutGoogle()
     }
     localStorage.clear()
+    
     startSet()
   })
 
